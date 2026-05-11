@@ -1,0 +1,218 @@
+/* ─────────────────────────────────────────────
+   Blaisy-Bas — Styles globaux
+   ───────────────────────────────────────────── */
+
+* { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; }
+
+body {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color .4s ease, color .4s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Thèmes ─── */
+:root,
+[data-theme="light"] {
+  --bg: #f6f1e4;
+  --bg-alt: #ede4cf;
+  --surface: #fbf7ec;
+  --text: #1f1a14;
+  --text-muted: #6b5f4a;
+  --border: #d9cdb0;
+  --accent: #b8893a;
+  --blue: #1e40af;
+  --parchment: #f9f2df;
+  --danger: #dc2626;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0d0a;
+  --bg-alt: #1a1814;
+  --surface: #211e18;
+  --text: #f5efe0;
+  --text-muted: #a8a294;
+  --border: #3a352c;
+  --accent: #d4a84b;
+  --blue: #4a7bc8;
+  --parchment: #1a1814;
+  --danger: #ef4444;
+}
+
+/* ─── Typographies utilitaires ─── */
+.display-font {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+  font-feature-settings: "ss01";
+}
+.ui-font {
+  font-family: 'Inter Tight', system-ui, sans-serif;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.fade-up { animation: fadeUp .8s ease backwards; }
+.float-anim { animation: float 6s ease-in-out infinite; }
+
+/* ─── Hover effects ─── */
+.hover-lift {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+.underline-grow {
+  position: relative;
+}
+.underline-grow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  width: 0;
+  transition: width .4s ease;
+}
+.underline-grow:hover::after { width: 100%; }
+
+/* ─── Ornements ─── */
+.ornament-line {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--accent);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.ornament-line::before,
+.ornament-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: .4;
+}
+
+/* ─── Grain texture ─── */
+.grain {
+  position: relative;
+}
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .25 0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .35;
+  mix-blend-mode: multiply;
+}
+
+/* ─── Boutons ─── */
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+  padding: 14px 28px;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all .3s ease;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: var(--accent);
+  color: #fff;
+  gap: 14px;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  padding: 12px 24px;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all .3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ─── Champs de formulaire ─── */
+input, textarea, select {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 16px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color .2s ease;
+  border-radius: 0;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+}
+label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 600;
+}
+
+/* ─── Liens propres dans le router ─── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Responsive helpers ─── */
+.hero-grid {
+  display: grid;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ─── Header responsive ─── */
+@media (max-width: 1100px) {
+  .desktop-nav { display: none !important; }
+  .mobile-burger { display: flex !important; }
+}
+@media (min-width: 1101px) {
+  .mobile-menu { display: none !important; }
+}
