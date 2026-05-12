@@ -1,11 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-// Layout
+// Layout site public
 import Header from "./components/layout/Header.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import AlertBanner from "./components/layout/AlertBanner.jsx";
 
-// Pages
+// Pages publiques
 import Accueil from "./pages/Accueil.jsx";
 import Village from "./pages/Village.jsx";
 import Mairie from "./pages/Mairie.jsx";
@@ -18,32 +18,35 @@ import Commerces from "./pages/Commerces.jsx";
 import Signalement from "./pages/Signalement.jsx";
 import Contact from "./pages/Contact.jsx";
 
+// Pages admin
+import AdminLogin from "./pages/admin/AdminLogin.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminBanner from "./pages/admin/AdminBanner.jsx";
+import AdminRoute from "./components/admin/AdminRoute.jsx";
+import AdminLayout from "./components/admin/AdminLayout.jsx";
+
 // Hooks
 import { useTheme } from "./hooks/useTheme.js";
 import { useAssocAuth } from "./hooks/useAssocAuth.js";
 import { useAllPosts } from "./hooks/usePosts.js";
 
-/**
- * Composant racine.
- *
- * État global remonté ici puis passé en props :
- *   - thème (sombre/clair)
- *   - authentification association
- *   - cache des posts par association
- */
 export default function App() {
   const { isDark, toggle: toggleTheme } = useTheme();
   const { loggedAssoc, login, logout } = useAssocAuth();
   const { allPosts, reloadOne } = useAllPosts();
+  const { pathname } = useLocation();
+
+  // Détecter si on est sur une route admin (pour cacher Header/Footer publics)
+  const isAdminRoute = pathname.startsWith("/admin");
 
   return (
     <>
-      <AlertBanner message="Info générale · Ce site est un projet citoyen non officiel en cours de developpement." />
-
-      <Header isDark={isDark} toggleTheme={toggleTheme} />
+      {!isAdminRoute && <AlertBanner />}
+      {!isAdminRoute && <Header isDark={isDark} toggleTheme={toggleTheme} />}
 
       <main>
         <Routes>
+          {/* Routes publiques */}
           <Route path="/" element={<Accueil />} />
           <Route path="/village" element={<Village />} />
           <Route path="/mairie" element={<Mairie />} />
@@ -68,10 +71,33 @@ export default function App() {
           <Route path="/commerces" element={<Commerces />} />
           <Route path="/signalement" element={<Signalement />} />
           <Route path="/contact" element={<Contact />} />
+
+          {/* Routes admin */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminLayout>
+                  <AdminDashboard />
+                </AdminLayout>
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/banner"
+            element={
+              <AdminRoute>
+                <AdminLayout>
+                  <AdminBanner />
+                </AdminLayout>
+              </AdminRoute>
+            }
+          />
         </Routes>
       </main>
 
-      <Footer />
+      {!isAdminRoute && <Footer />}
     </>
   );
 }

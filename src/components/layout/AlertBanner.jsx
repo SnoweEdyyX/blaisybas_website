@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Megaphone, X } from "lucide-react";
+import { getAlertBanner } from "../../lib/admin-storage.js";
 
 /**
- * Bandeau d'alerte affiché en haut de page.
- * En production, le message viendrait d'un endpoint (CMS, JSON statique...).
+ * Bandeau d'alerte affiché en haut du site.
+ * Récupère son contenu depuis Supabase (table site_settings).
+ * Modifiable via l'espace admin.
  */
-export default function AlertBanner({ message }) {
-  const [visible, setVisible] = useState(true);
-  if (!visible || !message) return null;
+export default function AlertBanner() {
+  const [data, setData] = useState(null);
+  const [closed, setClosed] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const banner = await getAlertBanner();
+        setData(banner);
+      } catch (err) {
+        console.error("Erreur chargement bandeau:", err);
+      }
+    })();
+  }, []);
+
+  // Ne rien afficher tant que les données ne sont pas chargées,
+  // si le bandeau est désactivé, ou si le visiteur a fermé
+  if (!data || !data.enabled || !data.message || closed) return null;
 
   return (
     <div
@@ -27,9 +44,9 @@ export default function AlertBanner({ message }) {
       }}
     >
       <Megaphone size={16} />
-      <span>{message}</span>
+      <span>{data.message}</span>
       <button
-        onClick={() => setVisible(false)}
+        onClick={() => setClosed(true)}
         aria-label="Fermer l'alerte"
         style={{
           background: "none",
