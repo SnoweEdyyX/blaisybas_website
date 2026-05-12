@@ -49,7 +49,7 @@ export default function Header({ isDark, toggleTheme }) {
           style={{ display: "flex", alignItems: "center", gap: 14 }}
         >
           <img
-            src="/blason.png"
+            src="/blason.svg"
             alt="Blason Blaisy-Bas"
             style={{
               width: 42,

@@ -41,9 +41,9 @@ export default function Footer() {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
               <img
-                src="/blason.png"
+                src="/blason.svg"
                 alt=""
-                style={{ width: 50, filter: "brightness(0) invert(1)" }}
+                style={{ width: 50, filter: "" }}
               />
               <div>
                 <div

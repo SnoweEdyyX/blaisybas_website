@@ -171,7 +171,7 @@ function HeroSection() {
           <div className="fade-up float-anim" style={{ textAlign: "center", animationDelay: ".3s" }}>
             <div style={{ position: "relative", display: "inline-block" }}>
               <img
-                src="/blason.png"
+                src="/blason.svg"
                 alt="Blason de Blaisy-Bas"
                 style={{
                   width: "100%",

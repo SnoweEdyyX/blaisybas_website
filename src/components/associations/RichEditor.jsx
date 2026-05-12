@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Image from "@tiptap/extension-image";
+import ImageResize from "tiptap-extension-resize-image";
 import Link from "@tiptap/extension-link";
 import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
@@ -62,7 +62,8 @@ export default function RichEditor({ value, onChange, assocId }) {
         openOnClick: false,
         HTMLAttributes: { class: "editor-link" },
       }),
-      Image.configure({
+      ImageResize.configure({
+        inline: false,
         HTMLAttributes: { class: "editor-image" },
       }),
       Youtube.configure({ width: 640, height: 360 }),

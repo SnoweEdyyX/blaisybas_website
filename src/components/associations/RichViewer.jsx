@@ -1,6 +1,6 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Image from "@tiptap/extension-image";
+import ImageResize from "tiptap-extension-resize-image";
 import Link from "@tiptap/extension-link";
 import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
@@ -25,7 +25,7 @@ export default function RichViewer({ content }) {
         openOnClick: true,
         HTMLAttributes: { target: "_blank", rel: "noopener noreferrer" },
       }),
-      Image,
+      ImageResize,
       Youtube.configure({ width: 640, height: 360 }),
     ],
     content: content || "",

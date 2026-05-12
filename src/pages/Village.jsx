@@ -144,7 +144,7 @@ function BlasonSection() {
       >
         <div style={{ textAlign: "center" }}>
           <img
-            src="/blason.png"
+            src="/blason.svg"
             alt="Blason"
             style={{ maxWidth: 280, width: "100%" }}
           />
