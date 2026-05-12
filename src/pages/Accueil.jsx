@@ -190,7 +190,7 @@ function HeroSection() {
                   marginTop: 16,
                 }}
               >
-                D'azur, à la colombe d'argent
+                D'azur au léopard d'or, à la colombe d'argent
               </div>
             </div>
           </div>
