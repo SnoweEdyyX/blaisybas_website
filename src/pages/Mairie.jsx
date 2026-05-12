@@ -206,11 +206,31 @@ function ConseilSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: 16,
           }}
         >
-          {["1er Adjoint", "2ème Adjointe", "3ème Adjoint"].map((titre, i) => (
+          {[
+            {
+              titre: "1er Adjoint au Maire",
+              nom: "M. Thomas Dellery",
+              age: 47,
+              profession: "Ingénieur et cadre technique d'entreprise",
+            },
+            {
+              titre: "2ème Adjointe au Maire",
+              nom: "Mme Nathalie Borne",
+              age: 55,
+              profession:
+                "Profession intermédiaire de la santé et du travail social",
+            },
+            {
+              titre: "3ème Adjoint au Maire",
+              nom: "M. Eric Morin",
+              age: 61,
+              profession: "Ancien employé",
+            },
+          ].map((adj, i) => (
             <div
               key={i}
               style={{
@@ -229,16 +249,40 @@ function ConseilSection() {
                   fontWeight: 600,
                 }}
               >
-                {titre}
+                {adj.titre}
               </div>
               <div
                 className="display-font"
-                style={{ fontSize: 20, fontWeight: 600, marginTop: 8 }}
+                style={{
+                  fontSize: 20,
+                  fontWeight: 600,
+                  marginTop: 8,
+                  letterSpacing: "-.01em",
+                }}
               >
-                Nom à compléter
+                {adj.nom}
               </div>
-              <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 4 }}>
-                Délégation à définir
+              <div
+                className="ui-font"
+                style={{
+                  fontSize: 12,
+                  color: "var(--text-muted)",
+                  marginTop: 6,
+                  letterSpacing: ".05em",
+                }}
+              >
+                {adj.age} ans
+              </div>
+              <div
+                style={{
+                  fontSize: 13,
+                  color: "var(--text-muted)",
+                  marginTop: 8,
+                  lineHeight: 1.5,
+                  fontStyle: "italic",
+                }}
+              >
+                {adj.profession}
               </div>
             </div>
           ))}
