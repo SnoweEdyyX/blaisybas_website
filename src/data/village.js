@@ -35,8 +35,8 @@ export const VILLAGE = {
 
   mayor: {
     name: "Monsieur Alain Lamy",
-    since: 2020,
-    term: "Mandat de six ans",
+    since: 2026,
+    term: "Mandat de 7 ans",
   },
 
   blason: {
