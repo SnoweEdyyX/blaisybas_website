@@ -190,7 +190,7 @@ function HeroSection() {
                   marginTop: 16,
                 }}
               >
-                D'azur au léopard d'or, à la colombe d'argent
+                D'azur au léopard d'or, armé et lampassé de gueules, surmonté d'une colombe fondante tenant en son bec la Sainte Ampoule, le tout d'argent.
               </div>
             </div>
           </div>
