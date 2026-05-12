@@ -38,7 +38,7 @@ export default function App() {
 
   return (
     <>
-      <AlertBanner message="Info municipale · Coupure d'eau prévue rue du Presbytère mercredi 13 mai de 9h à 12h" />
+      <AlertBanner message="Info générale · Ce site est un projet citoyen non officiel en cours de developpement." />
 
       <Header isDark={isDark} toggleTheme={toggleTheme} />
 
